@@ -1,0 +1,17 @@
+.weekday-tag {
+    height: 28px;
+}
+
+.active {
+    background-color: #0099ff;
+}
+
+.in-select {
+    background-color: #99ccff;
+}
+
+.select-pad:not(.active):not(.in-select):hover {
+    background-color: #eee;
+}
+
+

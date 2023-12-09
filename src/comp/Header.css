@@ -1,0 +1,14 @@
+
+.table-head {
+    display: flex;
+}
+
+.am {
+    background-color: blue;
+}
+
+.pm {
+    background-color: red;
+}
+
+
