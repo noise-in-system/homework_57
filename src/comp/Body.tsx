@@ -1,18 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Flex} from "antd";
 import './Body.css'
-import {replace} from "../actions/actions";
+import {replace, setIsSelecting, setLastEnterIdx} from "../actions/actions";
 import {connect} from "react-redux";
 import {weekDays} from "../constants";
 
 
 let downRow = -1
 let downColumn = -1
-let lastEnterRow = -1
-let lastEnterColumn = -1
 
-function Comp({replace, grid}) {
-    const [isSelecting, setIsSelecting] = useState(false)
+function Comp({replace, grid, isSelecting, setIsSelecting, setLastEnterIdx}) {
 
     // 状态 0原始 1选择中 2激活
 
@@ -39,19 +36,17 @@ function Comp({replace, grid}) {
         })
         replace(temp)
         setIsSelecting(false)
+        setLastEnterIdx(-1, -1)
         downRow = -1
         downColumn = -1
-        lastEnterRow = -1
-        lastEnterColumn = -1
     }
 
     const onMouseEnter = (enterRow, enterColumn) => {
-        // onMouseEnter={() => onMouseEnter(rowIndex, columnIndex)}
         if (isSelecting) {
-            lastEnterRow = enterRow
-            lastEnterColumn = enterColumn
 
             console.log('enter', enterRow, enterColumn)
+            setLastEnterIdx(enterRow, enterColumn)
+
             const minRow = Math.min(downRow, enterRow)
             const maxRow = Math.max(downRow, enterRow)
             const minColumn = Math.min(downColumn, enterColumn)
@@ -116,10 +111,13 @@ function Comp({replace, grid}) {
 
 const mapStateToProps = (state) => ({
     grid: state.grid,
+    isSelecting: state.isSelecting
 });
 
 const mapDispatchToProps = {
     replace,
+    setIsSelecting,
+    setLastEnterIdx
 };
 
 const Body = connect(mapStateToProps, mapDispatchToProps)(Comp);
