@@ -13,7 +13,7 @@ function App() {
             store.getState().lastEnterRow !== -1 &&
             store.getState().lastEnterColumn !== -1
         ) {
-            console.log('top up', store.getState().lastEnterRow, store.getState().lastEnterColumn)
+            // console.log('top up', store.getState().lastEnterRow, store.getState().lastEnterColumn)
 
             store.dispatch({type: OUTSIDE_MOUSE_UP})
         }

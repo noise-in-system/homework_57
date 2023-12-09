@@ -88,11 +88,12 @@ function Comp({grid, replace}) {
         <>
             <Flex vertical className={'bb1ccc bl1ccc br1ccc'}>
                 {length ? current.map((row, rowIdx) => row.length ? (
-                    <Flex className={'lh20 mb8'}>
+                    <Flex className={'lh20 mb8'} key={rowIdx}>
                         <Flex className={'weekday-column'} justify={'center'}>星期{`${weekDays[rowIdx]}`}</Flex>
                         <Flex flex={1} wrap={'wrap'} style={{wordBreak: 'break-all'}}>
                             {row.map((timeRange, idx) => (
                                 <Flex
+                                    key={timeRange}
                                     style={{wordBreak: 'break-all'}}>{timeRange}{idx !== row.length - 1 ? '、' : ''}</Flex>
                             ))}
                         </Flex>

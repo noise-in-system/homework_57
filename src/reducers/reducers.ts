@@ -26,17 +26,16 @@ const gridReducer = (state = initialState, action) => {
                 lastEnterColumn: action.payload.column,
             }
         case OUTSIDE_MOUSE_UP:
-            console.log('reducer', state.grid)
-            const temp = state.grid.map(row => row.map(column => {
-                if (column === 0) return 0
-                return 2
-            }))
+            // console.log('reducer', state.grid)
             return {
                 ...state,
                 isSelecting: false,
                 lastEnterRow: -1,
                 lastEnterColumn: -1,
-                grid: temp
+                grid: state.grid.map(row => row.map(column => {
+                    if (column === 0) return 0
+                    return 2
+                }))
             }
         default:
             return state;

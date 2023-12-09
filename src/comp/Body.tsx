@@ -44,7 +44,7 @@ function Comp({replace, grid, isSelecting, setIsSelecting, setLastEnterIdx}) {
     const onMouseEnter = (enterRow, enterColumn) => {
         if (isSelecting) {
 
-            console.log('enter', enterRow, enterColumn)
+            // console.log('enter', enterRow, enterColumn)
             setLastEnterIdx(enterRow, enterColumn)
 
             const minRow = Math.min(downRow, enterRow)
@@ -73,15 +73,16 @@ function Comp({replace, grid, isSelecting, setIsSelecting, setLastEnterIdx}) {
                 <Flex vertical className='br1ccc bl1ccc weekday-column'>
                     {weekDays.map((item, index) => (
                         <Flex justify={'center'} align={'center'}
+                              key={item}
                               className={`weekday-tag ${'bb1ccc'}`}>{`星期${item}`}</Flex>
                     ))}
                 </Flex>
 
                 <Flex vertical flex={1}>
                     {grid.map((rowItem, rowIndex) => {
-                        return <Flex style={{height: '28px'}}>
+                        return <Flex style={{height: '28px'}} key={rowIndex}>
                             {rowItem.map((columnItem, columnIndex) => (
-                                <Flex flex={1}>
+                                <Flex flex={1} key={rowIndex + ':' + columnIndex}>
                                     <div
                                         className={`br1ccc bb1ccc select-pad ${columnItem === 0 ? '' : columnItem === 1 ? 'in-select' : 'active'}`}
                                         onMouseDown={() => onMouseDown(rowIndex, columnIndex)}
