@@ -1,3 +1,11 @@
+# Quick Start
+to quickly see what's been implemented using:
+```
+yarn vite
+```
+
+and ping localhost:5173, dev env should be up and running.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
